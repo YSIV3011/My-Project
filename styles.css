@@ -15,3 +15,47 @@ p {
   margin: 50px auto;
   font: 30px Monaco,"Courier New","DejaVu Sans Mono","Bitstream Vera Sans Mono",monospace;
 }
+
+/* ---- Animations (see .claude/skills/animate) ---- */
+:root {
+  --ease-out-quint: cubic-bezier(.23, 1, .32, 1);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Staggered fade-up on page load */
+#octocat,
+p {
+  animation: enter 300ms var(--ease-out-quint) both;
+}
+
+p {
+  animation-delay: 100ms;
+}
+
+/* Hover lift + press on the octocat */
+#octocat {
+  transition: transform 200ms var(--ease-out-quint);
+}
+
+#octocat:hover {
+  transform: translateY(-4px);
+}
+
+#octocat:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #octocat,
+  p {
+    animation: none;
+    transition: none;
+  }
+}
